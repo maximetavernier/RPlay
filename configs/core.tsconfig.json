@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "allowJs": false,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "target": "es6",
+        "outDir": "../core",
+        "sourceMap": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "forceConsistentCasingInFileNames": true,
+        "noEmitOnError": true,
+        "noImplicitThis": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "skipLibCheck": true,
+        "strictNullChecks": true
+    },
+    "include": [
+        "../src/core/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

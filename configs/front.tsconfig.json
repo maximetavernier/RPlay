@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "strict": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitReturns": true,
+    "module": "es2015",
+    "moduleResolution": "node",
+    "target": "es6",
+    "outDir": "../front",
+    "jsx": "React"
+  },
+  "include": [
+    "../src/front/**/*.tsx",
+    "../src/front/**/*.css"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
