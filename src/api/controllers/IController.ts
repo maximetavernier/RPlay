@@ -7,6 +7,10 @@ import ServerConfigs from "../../core/models/configs/ServerConfigs";
 import CustomRequest from "../../core/models/http/CustomRequest";
 
 export default abstract class IController {
+    /**
+     * Server infos
+     */
+    protected host: string;
     protected env: string;
 
     protected router: Router;
@@ -14,9 +18,12 @@ export default abstract class IController {
 
     protected httpClient: HttpClientWrapper;
 
-    constructor(_serverConfigs: ServerConfigs, routePrefix: string = '/') {
+    constructor(serverConfigs: ServerConfigs, routePrefix: string = '/') {
         this.router = require('express').Router();
         this.routePrefix = routePrefix;
+
+        this.host = serverConfigs.host;
+        this.env = serverConfigs.env;
 
         /*
         const confs: HttpClientConfigs = {

@@ -1,18 +1,16 @@
-FROM node:6-alpine
-MAINTAINER maximetavernier92@gmail.com
-RUN apk add --update --no-cache zip python perl py-pip openssl && \
-    rm -rf /var/cache/apk/*
-RUN pip install --upgrade pip
-RUN pip install python-dateutil
-RUN npm install -g jsawk typescript
-RUN mkdir -p /app
-WORKDIR /app
-RUN mkdir keys && openssl genrsa -out keys/private.key 2048 && openssl rsa -in keys/private.key -outform PEM -pubout -out keys/public.pem
+# Introduction
+FROM maximetavernier92/node-redis:0.0.2
+LABEL maintainer="maximetavernier92@gmail.com"
+LABEL version="0.0.1"
+
+# Create archi
 COPY . /app
-RUN npm install
-RUN npm install -g npx
+RUN mkdir -p keys && openssl genrsa -out keys/private.key 2048 && openssl rsa -in keys/private.key -outform PEM -pubout -out keys/public.pem
+
+# Build & clean
 RUN npm run build
-RUN npm uninstall -g npx
 RUN rm -rf src
+
+# Start
 EXPOSE 8000
 ENTRYPOINT [ "npm", "run", "start" ]

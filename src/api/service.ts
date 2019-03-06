@@ -2,7 +2,10 @@
 
 import { Express } from 'express';
 
-import Root from "./controllers/Root";
+import Proxy from './interceptors/Proxy';
+import Locale from './interceptors/Locale.cs';
+
+import Map from './controllers/Map';
 import Access from './controllers/Access';
 
 import Constants from '../core/Constants';
@@ -66,11 +69,12 @@ class Service {
     }
 
     private importInterceptors(): void {
-        this.app.use(require(Path.combine(Constants['InterceptorsDirPath'], 'Proxy')));
+        this.app.use(new Proxy(this.confs).Interceptor());
+        this.app.use(new Locale(this.confs).Interceptor());
     }
 
     private importControllers(): void {
-        this.app.use(new Root(this.confs).Router());
+        this.app.use(new Map(this.confs).Router());
         this.app.use(new Access(this.confs).Router())
     }
 
